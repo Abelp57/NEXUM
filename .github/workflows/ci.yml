@@ -1,6 +1,7 @@
 name: ci
 
 on:
+  workflow_dispatch:            # 👈 permite ejecutar manualmente desde Actions
   push:
     branches: [ main ]
     paths:
@@ -8,6 +9,7 @@ on:
       - "package.json"
       - "pnpm-lock.yaml"
       - "pnpm-workspace.yaml"
+      - ".github/workflows/ci.yml"   # 👈 incluir cambios al workflow
   pull_request:
     branches: [ main ]
     paths:
@@ -15,6 +17,7 @@ on:
       - "package.json"
       - "pnpm-lock.yaml"
       - "pnpm-workspace.yaml"
+      - ".github/workflows/ci.yml"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -29,8 +32,7 @@ jobs:
       - name: Setup Node 20
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          # IMPORTANTE: sin `cache` aquí
+          node-version: 20           # 👈 sin cache aquí
 
       - name: Enable Corepack and install pnpm 9.12.3
         run: |
@@ -47,8 +49,7 @@ jobs:
         with:
           path: ${{ steps.pnpm-store.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+          restore-keys: ${{ runner.os }}-pnpm-
 
       - name: Install deps (workspace)
         run: pnpm install --frozen-lockfile
