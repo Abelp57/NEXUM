@@ -1,21 +1,21 @@
-# CODEOWNERS
+﻿# CODEOWNERS
 # Mas info: https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
 # Duenos por defecto (todo lo no especificado)
-* @simei-devs
+* @Abelp57p57
 
 # Apps
-/apps/web/ @simei-web @abel
-/apps/api/ @simei-api
+/apps/web/ @Abelp57p57 @Abelp57
+/apps/api/ @Abelp57p57
 
 # Packages
-/packages/ @simei-packages
-/packages/* @simei-packages
+/packages/ @Abelp57p57
+/packages/* @Abelp57p57
 
 # Backend & DB
-/prisma/ @simei-backend
+/prisma/ @Abelp57p57
 
 # Infra & Workflows
-/.github/ @simei-devops
-/pnpm-workspace.yaml @simei-devops
-/turbo.json @simei-devops
+/.github/ @Abelp57p57
+/pnpm-workspace.yaml @Abelp57p57
+/turbo.json @Abelp57p57
