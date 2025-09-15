@@ -1,0 +1,9 @@
+﻿{
+  "name": "flowfix",
+  "private": true,
+  "packageManager": "pnpm@9",
+  "scripts": {
+    "lint": "pnpm -r lint",
+    "build": "pnpm -r build"
+  }
+}

@@ -1,0 +1,3 @@
+Primary Font: Inter (Google Fonts)
+Alternative Font: Satoshi, SF Pro, Poppins
+Monospace Font: JetBrains Mono, Roboto Mono
