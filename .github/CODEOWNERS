@@ -1,7 +1,21 @@
-﻿# Ajusta con tus usuarios de GitHub
-/packages/core/ @sofia-assistant
-/packages/db/ @sofia-assistant
-/packages/ui/ @sofia-assistant
-/apps/web/ @sofia-assistant
-/apps/api/ @sofia-assistant
-/docs/ @sofia-assistant
+# CODEOWNERS
+# MÃ¡s info: https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# DueÃ±os por defecto (todo lo no especificado)
+* @simei-devs
+
+# Apps
+/apps/web/ @simei-web @abel
+/apps/api/ @simei-api
+
+# Packages
+/packages/ @simei-packages
+/packages/* @simei-packages
+
+# Backend & DB
+/prisma/ @simei-backend
+
+# Infra & Workflows
+/.github/ @simei-devops
+/pnpm-workspace.yaml @simei-devops
+/turbo.json @simei-devops
