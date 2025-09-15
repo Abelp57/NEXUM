@@ -1,1 +1,61 @@
-# (pega aquí el YAML de arriba)
+name: ci
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "apps/web/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+  pull_request:
+    branches: [ main ]
+    paths:
+      - "apps/web/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          # No uses cache aquí; aún no existe pnpm
+
+      - name: Enable Corepack and install pnpm 9.12.3
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.12.3 --activate
+          pnpm -v
+
+      # Cache de la store de pnpm (opcional pero recomendado)
+      - name: Get pnpm store path
+        id: pnpm-store
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-store.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install deps (workspace)
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint (apps/web)
+        run: pnpm -C apps/web lint
+
+      - name: Build (apps/web)
+        run: pnpm -C apps/web build
