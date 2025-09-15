@@ -1,0 +1,11 @@
+name: Bug report
+description: Reporta un problema
+labels: [bug]
+body:
+  - type: textarea
+    attributes: { label: Descripcion, description: Que pasa?, placeholder: Paso a paso }
+    validations: { required: true }
+  - type: textarea
+    attributes: { label: Expectativa, description: Que esperabas que pasara? }
+  - type: input
+    attributes: { label: Version/app, placeholder: apps/web o apps/api }

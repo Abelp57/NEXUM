@@ -1,0 +1,11 @@
+name: Feature request
+description: Propone una mejora
+labels: [enhancement]
+body:
+  - type: textarea
+    attributes: { label: Problema, description: Que problema resuelve? }
+    validations: { required: true }
+  - type: textarea
+    attributes: { label: Solucion propuesta, description: Describela }
+  - type: input
+    attributes: { label: Alcance, placeholder: apps/web, apps/api, packages/* }

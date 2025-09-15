@@ -1,0 +1,10 @@
+area:web:
+  - 'apps/web/**'
+area:api:
+  - 'apps/api/**'
+area:packages:
+  - 'packages/**'
+area:db:
+  - 'prisma/**'
+ci:
+  - '.github/**'
